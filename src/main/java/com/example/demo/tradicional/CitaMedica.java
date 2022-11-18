@@ -9,6 +9,8 @@ public class CitaMedica {
 	private Medico medico;
 	private Paciente paciente;
 
+	//Comentario taller 4
+
 	void agendar(String numero, LocalDateTime fechac, String nombreMed, String cedMed, String nombrePaciente,
 			String cedulaPaciente, String tipo) {
 
