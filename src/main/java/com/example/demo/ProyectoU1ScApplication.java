@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
+import java.time.LocalDateTime; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.springboot.CitaMedicaSB;
 import com.example.demo.springboot.MedicoSB;
-import com.example.demo.springboot.PacienteCancerSB;
 import com.example.demo.springboot.PacienteTerceraEdadSB;
 
 
