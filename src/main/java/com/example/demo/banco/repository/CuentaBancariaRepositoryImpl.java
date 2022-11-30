@@ -1,6 +1,5 @@
 package com.example.demo.banco.repository;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,36 +16,47 @@ public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
 	public CuentaBancaria buscarPorNumero(String numeroCuenta) {
 		// TODO Auto-generated method stub
 		// SELECT * FROM CUENTA C WHERE C.NUMERO = numeroCuenta
-		CuentaBancaria cuenta = new CuentaBancaria();
-		cuenta.setNumero(numeroCuenta);
-		cuenta.setSaldo(new BigDecimal(100));
-		cuenta.setTipo("A");
-		cuenta.setTitular("Willan Diaz");
+		/*
+		 * CuentaBancaria cuenta = new CuentaBancaria(); cuenta.setNumero(numeroCuenta);
+		 * cuenta.setSaldo(new BigDecimal(100)); cuenta.setTipo("A");
+		 * cuenta.setTitular("Willan Diaz");
+		 */
+		CuentaBancaria cuenta = null;
+		for (CuentaBancaria cb : baseCuentas) {
+			if (cb.getNumero().equals(numeroCuenta)) {
+				cuenta = cb;
+			}
+		}
+		System.out.println("Se busca la cuenta: " + numeroCuenta);
 		return cuenta;
 	}
 
 	@Override
 	public CuentaBancaria buscar(Integer id) {
 		// TODO Auto-generated method stub
+		System.out.println("Se busca la cuenta: " + id);
 		return null;
 	}
 
 	@Override
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
+		System.out.println("Se actualiza la cuenta: " + cuentaBancaria);
 
 	}
 
 	@Override
 	public void insertar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
+		System.out.println("Se inserta la cuentaBancaria: " + cuentaBancaria);
 		baseCuentas.add(cuentaBancaria);
 	}
 
 	@Override
 	public void borrar(Integer id) {
 		// TODO Auto-generated method stub
-
+		System.out.println("Se borra la cuenta: " + id);
+ 
 	}
 
 }
