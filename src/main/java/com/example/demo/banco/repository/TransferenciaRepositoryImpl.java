@@ -10,7 +10,7 @@ import com.example.demo.banco.modelo.Transferencia;
 @Repository
 public class TransferenciaRepositoryImpl implements ITransferenciaRepository {
 
-	private static List<Transferencia> baseDatos = new ArrayList();
+	private static List<Transferencia> baseDatos = new ArrayList<>();
 
 	@Override
 	public Transferencia buscar(Integer id) {
@@ -40,7 +40,7 @@ public class TransferenciaRepositoryImpl implements ITransferenciaRepository {
 	@Override
 	public List<Transferencia> buscarTodos() {
 		// TODO Auto-generated method stub
-		return null;
+		return baseDatos;
 	}
 
 }

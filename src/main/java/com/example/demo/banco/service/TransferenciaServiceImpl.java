@@ -1,6 +1,7 @@
 package com.example.demo.banco.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		// 2. Consultar el saldo de la cuenta origen
 		BigDecimal saldoOrigen = origen.getSaldo();
 		// 3. Operación resta en el origen
-		//nuevoSaldo = saldoOrigen - monto
+		// nuevoSaldo = saldoOrigen - monto
 		BigDecimal nuevoSaldo = saldoOrigen.subtract(monto);
 		// 4. Actualización cuenta origen
 		origen.setSaldo(nuevoSaldo);
@@ -45,13 +46,45 @@ public class TransferenciaServiceImpl implements ITransferenciaService {
 		// 1. Buscar la cuenta destino
 		CuentaBancaria destino = this.bancariaService.buscarPorNumero(numeroDestino);
 		// 2. Consultar el saldo de la cuenta destino
-		BigDecimal  saldoDestino = destino.getSaldo();
+		BigDecimal saldoDestino = destino.getSaldo();
 		// 3. Operación resta en el destino
-		//nuevoSaldo = saldoDestino + monto;
+		// nuevoSaldo = saldoDestino + monto;
 		BigDecimal nuevoSaldoDestino = saldoDestino.add(monto);
 		// 4. Actualización cuenta destino
 		destino.setSaldo(nuevoSaldoDestino);
 		this.bancariaService.actualizar(destino);
+
+		Transferencia trans = new Transferencia();
+		trans.setCuentaDestino(numeroDestino);
+		trans.setCuentaOrigen(numeroOrigen);
+		trans.setFecha(LocalDateTime.now());
+		trans.setMonto(monto);
+		trans.setNumero("123124");
+		this.transferenciaRepository.insertar(trans);
+	}
+
+	@Override
+	public Transferencia buscar(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actualizar(Transferencia transferencia) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void insertar(Transferencia transferencia) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void borrar(Integer id) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
