@@ -10,7 +10,7 @@ import com.example.demo.banco.modelo.CuentaBancaria;
 @Repository
 public class CuentaBancariaRepositoryImpl implements ICuentaBancariaRepository {
 
-	private static List<CuentaBancaria> baseCuentas = new ArrayList();
+	private static List<CuentaBancaria> baseCuentas = new ArrayList<>();
 
 	@Override
 	public CuentaBancaria buscarPorNumero(String numeroCuenta) {
