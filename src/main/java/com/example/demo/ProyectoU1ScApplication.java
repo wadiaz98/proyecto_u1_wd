@@ -1,27 +1,28 @@
 package com.example.demo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner; //ejecuta en consola
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.cita.Service.ICitaMedicaService;
-import com.example.demo.cita.Service.IMedicoService;
-import com.example.demo.cita.Service.IPacienteService;
-import com.example.demo.cita.modelo.Medico;
-import com.example.demo.cita.modelo.Paciente;
+import com.example.demo.ejercicio1.modelo.Propietario;
+import com.example.demo.ejercicio1.modelo.Vehiculo;
+import com.example.demo.ejercicio1.service.IMatriculaNuevaService;
+import com.example.demo.ejercicio1.service.IVehiculoService;
+import com.example.demo.ejercicio1.service.IpropietarioService;
 
 @SpringBootApplication
 public class ProyectoU1ScApplication implements CommandLineRunner {
 
 	@Autowired
-	private IPacienteService pacienteService;
+	private IVehiculoService iVehiculoService;
+
 	@Autowired
-	private IMedicoService medicoService;
-	@Autowired
-	private ICitaMedicaService citaMedicaService;
+	private IpropietarioService iPropietarioService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU1ScApplication.class, args);
@@ -30,35 +31,24 @@ public class ProyectoU1ScApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Vehiculo vehi = new Vehiculo();
+		vehi.setMarca("Tocyota");
+		vehi.setPlaca("PSGD2312");
+		vehi.setPrecio(new BigDecimal(20000));
+		vehi.setTipo("L");
+		this.iVehiculoService.crear(vehi);
+		vehi.setPrecio(new BigDecimal(10000));
+		vehi.setMarca("Toyota");
+		this.iVehiculoService.modificar(vehi);
+		Propietario propietario = new Propietario();
+		propietario.setApellido("Diaz");
+		propietario.setCedula("1241241241");
+		propietario.setFechaNaciemiento(LocalDateTime.of(1999, 12, 12, 12, 12));
+		propietario.setNombre("Willan");
+		this.iPropietarioService.guardar(propietario);
+		
+		
 
-		// Cita medica
-
-		// Opcion 1: Crear y actualizar paciente
-
-		Paciente paciente = new Paciente();
-		paciente.setApellido("Diaz");
-		paciente.setCedula("17258819");
-		paciente.setNombre("Willan");
-		paciente.setTipo("N"); // N de ninio
-
-		pacienteService.guardar(paciente);
-
-		paciente.setTipo("TE"); // TE de tercera edad
-		paciente.setApellido("Cordova");
-
-		pacienteService.modificar(paciente);
-
-		// Opcion 2: crear medico
-		Medico medico = new Medico();
-		medico.setApellido("Torres");
-		medico.setCedula("18245879");
-		medico.setEspecialidad("Odontologia");
-		medico.setNombre("Miguel");
-
-		medicoService.agregar(medico);
-
-		// Opcion 3: Agendar cita
-		this.citaMedicaService.agendar("17258819", "18245879", LocalDateTime.of(2022, 12, 17, 18, 05));
 	}
 
 }

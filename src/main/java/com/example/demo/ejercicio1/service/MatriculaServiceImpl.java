@@ -32,9 +32,11 @@ public class MatriculaServiceImpl implements IMatriculaService {
 		BigDecimal valor = null;
 		if (vehiculo.getTipo().equals("P")) {
 			valor = vehiculo.getPrecio().multiply(new BigDecimal(0.15));
-		} else {
+		} else  if (vehiculo.getTipo().equals("L")){
 			// liviano
 			valor = vehiculo.getPrecio().multiply(new BigDecimal(0.10));
+		}else {
+			//hibrido
 		}
 		// -1 valor izquierda menor
 		// 0 son iguales
